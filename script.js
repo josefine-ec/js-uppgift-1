@@ -1,12 +1,14 @@
-function checkMinLength(value, minLength = 2) {
-    if(value.length < minLength)
+function checkMinLength(value) {
+    const minLengthRegex = /../;
+    if(!minLengthRegex.test(value))
         return false
 
     return true
 }
 
-function checkZipCode(value, minValue = 5) {
-    if(value.length < minValue)
+function checkZipCode(value) {
+    const zipcodeRegex = /\b\d{5}\b/;
+    if(!zipcodeRegex.test(value))
         return false
 
     return true
