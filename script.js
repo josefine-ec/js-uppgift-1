@@ -32,18 +32,46 @@ function checkPassword(value) {
     return true
 }
 
+var checkConfirmation = function() {
+    if (document.getElementById('password1').value != document.getElementById('password2').value)
+      return false
+
+    return true
+  }
+
+
+function getAge(DOB) { // KAOS
+    var today = new Date();
+    var birthDate = new Date(DOB);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }    
+    return age;
+}
+
 var forms = document.querySelectorAll('.needs-validation')
 
 forms.forEach(element => {
 
-    switch(element.type) {
-        case "text":
+    switch(element.id) {
+        case "firstname":
+        case "lastname":
+        case "street-address":
+        case "city":
             element.addEventListener("keyup", function(e) {
                 console.log(checkMinLength(e.target.value))
             })
             break;
 
-        case "number":
+        case "birthday": // KAOS
+            element.addEventListener("keyup", function(e) {
+                console.log(getAge(e.target.DOB))
+            })
+            break;            
+
+        case "zipcode":
             element.addEventListener("keyup", function(e) {
                 console.log(checkZipCode(e.target.value))
             })
@@ -55,9 +83,15 @@ forms.forEach(element => {
             })
             break;
 
-        case "password":
+        case "password1":
             element.addEventListener("keyup", function(e) {
                 console.log(checkPassword(e.target.value))
+            })
+            break;
+
+        case "password2":
+            element.addEventListener("keyup", function(e) {
+                console.log(checkConfirmation(e.target.value))
             })
             break;
     }
