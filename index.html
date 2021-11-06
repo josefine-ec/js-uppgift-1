@@ -11,10 +11,11 @@
 <body>
     <div class="container d-flex justify-content-center mt-5">
         <div class="col-12">
-            <form id="form" novalidate>
+            <form id="registration-form" novalidate>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control needs-validation" id="firstname" placeholder="firstname" required>
                     <label id="label-firstname" for="floatingInput">Förnamn</label>
+                    <div id="error-fn"class="text-danger ms-3"></div>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control needs-validation" id="lastname" placeholder="lastname" required>

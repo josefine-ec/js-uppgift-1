@@ -1,5 +1,6 @@
 function checkMinLength(value) {
     const minLengthRegex = /../;
+
     if (!minLengthRegex.test(value))
         return false
 
@@ -41,7 +42,6 @@ var checkConfirmation = function () {
 
 
 // AGE VALIDATION
-// KOLLA FÖRST DETTA
 
 function checkBirthdate(value) {
     const birthRegex = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
@@ -52,30 +52,22 @@ function checkBirthdate(value) {
     return true
 }
 
-// OM OVAN ÄR TRUE, BERÄKNA ÅLDER - KAN DENNA NESTAS????
-
 function getAge(dateString) {
     var today = new Date();
     var birthDate = new Date(dateString);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    var age = today.getFullYear() - birthDate.getFullYear(); // nuvarande år - födelseår
+    var m = today.getMonth() - birthDate.getMonth(); // nuvarande månad - födelsemånad
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) { // OM nuvarande månad - födelsemånad är mindre än 0 OCH dagens datum är mindre än födelsedatum
         age--;
     }
-    return age;
 
-}
-
-// OM ÅLDER >= 18 RETURN TRUE --> good to go
-
-function checkAge(value) {
-    if (!value >= 18) {
+    if (age < 18) {
         return false
-
-        return true
     }
-}
 
+    return true;
+    
+}
 
 var forms = document.querySelectorAll('.needs-validation')
 
@@ -95,6 +87,7 @@ forms.forEach(element => {
             element.addEventListener("keyup", function (e) {
                 console.log(checkBirthdate(e.target.value))
                 console.log('age: ' + getAge(e.target.value)) // HÄR RÄKNAR DEN UT ÅLDER!!!!! men keyup behövs inte här??
+                //console.log('age is: ' + checkAge())
             })
             break;
 
