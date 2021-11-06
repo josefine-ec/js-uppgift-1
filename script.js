@@ -86,8 +86,7 @@ forms.forEach(element => {
         case "dateString":
             element.addEventListener("keyup", function (e) {
                 console.log(checkBirthdate(e.target.value))
-                console.log('age: ' + getAge(e.target.value)) // HÄR RÄKNAR DEN UT ÅLDER!!!!! men keyup behövs inte här??
-                //console.log('age is: ' + checkAge())
+                console.log('Valid age: ' + getAge(e.target.value))
             })
             break;
 
